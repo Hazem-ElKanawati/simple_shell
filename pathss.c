@@ -7,4 +7,4 @@
  * Return: An absolute route of the file or "NULL"
  */
 
-char *line_up(char *namefile)
+char *line_up(char *namefile);
