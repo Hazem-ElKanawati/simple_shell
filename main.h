@@ -15,6 +15,9 @@ void prchar(char x);
 void prstr(char *x);
 extern char **environ;
 void rm_newline(char *x);
+char *_strdup(char *x);
+char **handle_argument(char *x);
+int arg_count(const char *comm);
 
 
 

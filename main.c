@@ -6,41 +6,37 @@
  * @argv: arg vector
  * Return: 0(Success) 1(Error)
  */
-
 int main(int argc, char *argv[])
 {
 	ssize_t r;
 	size_t l = 0;
 	char *command = NULL;
-	char *const args[] = {"./hsh", NULL};
+	char **args;
 	pid_t p;
 
-	if (argc == 2)
+	while (1)
 	{
-		execve(argv[1], args, environ);
-	}
-	else if (argc == 1)
-	{
-		while (1)
+		printf("($) ");
+		r = getline(&command, &l, stdin);
+		rm_newline(command);
+		args = handle_argument(command);
+		if (r != -1 && access(args[0], X_OK) == 0)
 		{
-			prstr("($) ");
-			r = getline(&command, &l, stdin);
-			rm_newline(command);
-			if (r != -1 && access(command, X_OK) == 0)
+			p = fork();
+			if (p == -1)
 			{
-				p = fork();
-				if (p == -1)
-					perror("./hsh");
-				else if (p == 0)
-				{
-				execve(command, args, environ);
-				}
-				else
-					wait(NULL);
+				perror(argv[0]);
+			} else if (p == 0)
+			{
+				execve(args[0], args, NULL);
+				perror(argv[0]);
+			} else
+			{
+				wait(NULL);
 			}
-			else
-				perror("./hsh");
-
+		} else
+		{
+			perror(argv[0]);
 		}
 	}
 	free(command);

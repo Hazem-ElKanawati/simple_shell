@@ -35,3 +35,23 @@ void prstr(char *x)
 		i++;
 	}
 }
+/**
+ * _strdup - duplicates a string
+ * @x: the string
+ * Return: pointer to the duplicated string
+ */
+char *_strdup(char *x)
+{
+	int i = 0, n = 0;
+	char *p;
+
+	while (x[n] != '\0')
+		n++;
+	p = (char *)malloc(sizeof(char) * (n + 1));
+	if (p == NULL)
+		return (NULL);
+	for (i = 0; i < n; i++)
+		p[i] = x[i];
+	p[i] = '\0';
+	return (p);
+}
