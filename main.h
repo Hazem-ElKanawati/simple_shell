@@ -11,6 +11,7 @@
 #include <string.h>
 
 void sstrcat(char *x, char *y);
+void custom_print(const char *text);
 void prchar(char x);
 void prstr(char *x);
 extern char **environ;

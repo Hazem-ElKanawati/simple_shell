@@ -30,6 +30,7 @@ int main(int argc, char *argv[])
 			{
 				execve(args[0], args, NULL);
 				perror(argv[0]);
+				exit(1);
 			} else
 			{
 				wait(NULL);
@@ -38,7 +39,9 @@ int main(int argc, char *argv[])
 		{
 			perror(argv[0]);
 		}
+		free(args);
 	}
+	(void)argc;
 	free(command);
 	return (0);
 }
