@@ -4,9 +4,10 @@
  * main - runs the shell
  * @argc: arg count
  * @argv: arg vector
+ * @env: enviroment array
  * Return: 0(Success) 1(Error)
  */
-int main(int argc, char *argv[])
+int main(int argc, char *argv[], char **env)
 {
 	ssize_t r;
 	size_t l = 0;
@@ -14,6 +15,7 @@ int main(int argc, char *argv[])
 	char **args;
 	pid_t p;
 
+	(void)argc;
 	while (1)
 	{
 		printf("($) ");
@@ -28,8 +30,9 @@ int main(int argc, char *argv[])
 				perror(argv[0]);
 			} else if (p == 0)
 			{
-				execve(args[0], args, NULL);
+				execve(args[0], args, env);
 				perror(argv[0]);
+				_exit(EXIT_FAILURE);
 			} else
 			{
 				wait(NULL);

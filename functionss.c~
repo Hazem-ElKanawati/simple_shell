@@ -84,38 +84,3 @@ char **handle_argument(char *x)
 	free(s);
 	return (p);
 }
-/**
- * execute - executes the command and searches for it in the path
- * @args: arguments of command
- * @env: enviroment
- * @argv: argv of the main
- */
-
-void execute(char **args, char **env, char *argv[])
-{
-	int i;
-	char *pathptr;
-	char **patharr;
-	char *comm;
-
-	if (args[0][0] == '/')
-	{
-		if (access(args[0], X_OK) == 0)
-			_execute(args, env, args[0], argv[0]);
-	} else
-	{
-		for (i = 0; env[i] != NULL; i++)
-		{
-			if (_strncmp(env[i], "PATH:", 5) == 1)
-				pathptr = env[i] + 5;
-		}
-		patharr = get_path(pathptr);
-		for (i = 0; patharr[i] != NULL; i++)
-		{
-			sstrcat(patharr[i], args[0]);
-			comm = patharr[i];
-			if (access(comm, X_OK) == 0)
-				_execute(args, env, comm, argv[0]);
-		}
-	}
-}

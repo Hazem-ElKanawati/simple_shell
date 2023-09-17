@@ -55,3 +55,28 @@ char *_strdup(char *x)
 	p[i] = '\0';
 	return (p);
 }
+/**
+ * _strcmp - compares 2 strings
+ * @x: 1st string
+ * @y: 2nd string
+ * Return: 1 (Same string) 0 (Different Strings)
+ */
+int _strcmp(char *x, char *y)
+{
+	int i;
+
+	for (i = 0; x[i] != '\0' && y[i] != '\0'; i++)
+	{
+		if (x[i] != y[i])
+			return (0);
+	}
+	return (1);
+}
+int _strlen(char *x)
+{
+	int i = 0;
+
+	while (x[i] != '\0')
+		i++;
+	return (i);
+}

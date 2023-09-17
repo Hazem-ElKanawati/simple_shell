@@ -18,6 +18,13 @@ void rm_newline(char *x);
 char *_strdup(char *x);
 char **handle_argument(char *x);
 int arg_count(const char *comm);
+void execute(char **args, char **env, char *argv[]);
+char **get_path(char *pathptr);
+void _execute(char **args, char **env, char *comm, char *name);
+int _strlen(char *x);
+int _strcmp(char *x, char *y);
+int _strncmp(char *x, char *y, int n);
+
 
 
 
