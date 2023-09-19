@@ -76,4 +76,18 @@ char **get_path(char *pathptr)
 
 	return (p);
 }
+/**
+ * check_exit - checks if the command is exit
+ * @args: command and arguments
+ * Return: 0(Command is Not Exit)
+ */
 
+int check_exit(char **args)
+{
+
+	if (_strcmp(args[0], "exit") == 1)
+		exit(0);
+	else
+		return (0);
+
+}

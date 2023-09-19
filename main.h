@@ -27,6 +27,7 @@ int _strcmp(char *x, char *y);
 int _strncmp(char *x, char *y, int n);
 void _execute(char **args, char **env, char *comm, char *name);
 void _strcpy(char *x, char *y);
+int check_exit(char **args);
 
 
 

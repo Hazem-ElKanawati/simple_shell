@@ -106,7 +106,7 @@ void execute(char **args, char **env, char *argv[])
 			flag = 1;
 		}
 	}
-	else
+	else if (check_exit(args) == 0)
 	{
 		for (i = 0; env[i] != NULL; i++)
 		{
