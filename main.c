@@ -15,9 +15,25 @@ int main(int argc, char *argv[], char **env)
 	char **args;
 
 	(void)argc;
-	while (1)
+	if (isatty(STDIN_FILENO))
 	{
-		printf("($) ");
+		while (1)
+		{
+			printf("($) ");
+			r = getline(&command, &l, stdin);
+			fflush(stdin);
+			if (r != -1)
+			{
+				rm_newline(command);
+				args = handle_argument(command);
+				execute(args, env, argv);
+			} else
+			{
+				perror(argv[0]);
+			}
+		}
+	} else
+	{
 		r = getline(&command, &l, stdin);
 		fflush(stdin);
 		if (r != -1)
@@ -29,8 +45,8 @@ int main(int argc, char *argv[], char **env)
 		{
 			perror(argv[0]);
 		}
+
 	}
-	free(command);
 	free(args);
 	return (0);
 }

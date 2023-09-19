@@ -10,7 +10,6 @@
 void _execute(char **args, char **env, char *comm, char *name)
 {
 	pid_t p;
-	int i;
 
 	p = fork();
 
@@ -21,21 +20,11 @@ void _execute(char **args, char **env, char *comm, char *name)
 	else if (p == 0)
 	{
 		execve(comm, args, env);
-		for (i = 0; args[i] != NULL; i++)
-		{
-			free(args[i]);
-		}
-		free(args);
 		exit(1);
 		perror(name);
 	}
 	else
 	{
-		for (i = 0; args[i] != NULL; i++)
-		{
-			free(args[i]);
-		}
-		free(args);
 		wait(NULL);
 	}
 }
