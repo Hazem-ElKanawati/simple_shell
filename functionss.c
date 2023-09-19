@@ -67,11 +67,11 @@ char **handle_argument(char *x)
 		perror("malloc");
 		exit(1);
 	}
-	s = strdup(x);
+	s = _strdup(x);
 	tok = strtok(s, " ");
 	while (tok != NULL)
 	{
-		p[i] = strdup(tok);
+		p[i] = _strdup(tok);
 		if (p[i] == NULL)
 		{
 			perror("strdup");
