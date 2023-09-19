@@ -20,6 +20,7 @@ void sstrcat(char *x, char *y)
 	}
 	x[l1] = '\0';
 }
+
 /**
  * prstr - prints a simple string
  * @x: the string to be printed
@@ -47,7 +48,7 @@ char *_strdup(char *x)
 
 	while (x[n] != '\0')
 		n++;
-	p = (char *)malloc(sizeof(char) * (n + 1));
+	p = (char *)malloc(sizeof(char) * (n + 3));
 	if (p == NULL)
 		return (NULL);
 	for (i = 0; i < n; i++)
@@ -72,6 +73,11 @@ int _strcmp(char *x, char *y)
 	}
 	return (1);
 }
+/**
+ * _strlen - counts lentgh of a string
+ * @x: the string
+ * Return: length of the string
+ */
 int _strlen(char *x)
 {
 	int i = 0;

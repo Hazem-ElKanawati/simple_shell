@@ -57,7 +57,7 @@ int arg_count(const char *comm)
 char **handle_argument(char *x)
 {
 	int l = arg_count(x);
-	char **p = malloc(sizeof(char *) * (l + 1));
+	char **p = malloc(sizeof(char *) * (l + 3));
 	char *s;
 	char *tok;
 	int i = 0;
@@ -85,37 +85,51 @@ char **handle_argument(char *x)
 	return (p);
 }
 /**
- * execute - executes the command and searches for it in the path
+ * execute - searches and executes command
  * @args: arguments of command
  * @env: enviroment
- * @argv: argv of the main
+ * @argv: array of arguments vector
  */
-
 void execute(char **args, char **env, char *argv[])
 {
 	int i;
-	char *pathptr;
-	char **patharr;
-	char *comm;
+	char *pathptr = NULL;
+	char **patharr = NULL;
+	char *comm = NULL;
+	int flag = 0;
 
 	if (args[0][0] == '/')
 	{
 		if (access(args[0], X_OK) == 0)
+		{
 			_execute(args, env, args[0], argv[0]);
-	} else
+			flag = 1;
+		}
+	}
+	else
 	{
 		for (i = 0; env[i] != NULL; i++)
 		{
-			if (_strncmp(env[i], "PATH:", 5) == 1)
+			if (_strncmp(env[i], "PATH=", 5) == 1)
 				pathptr = env[i] + 5;
 		}
 		patharr = get_path(pathptr);
 		for (i = 0; patharr[i] != NULL; i++)
 		{
+			sstrcat(patharr[i], "/");
 			sstrcat(patharr[i], args[0]);
 			comm = patharr[i];
+
 			if (access(comm, X_OK) == 0)
+			{
 				_execute(args, env, comm, argv[0]);
+				flag = 1;
+				break;
+			}
 		}
 	}
+	free(patharr);
+	if (!flag)
+		perror(argv[0]);
 }
+

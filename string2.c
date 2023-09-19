@@ -19,3 +19,19 @@ int _strncmp(char *x, char *y, int n)
 	}
 	return (1);
 }
+/**
+ * _strcpy - copies a string to another dest
+ * @x: destination
+ * @y: source
+ */
+
+void _strcpy(char *x, char *y)
+{
+	int i;
+
+	for (i = 0; y[i] != '\0'; i++)
+	{
+		x[i] = y[i];
+	}
+	x[i] = '\0';
+}

@@ -11,6 +11,7 @@
 #include <string.h>
 
 void sstrcat(char *x, char *y);
+void custom_print(const char *text);
 void prchar(char x);
 void prstr(char *x);
 extern char **environ;
@@ -20,10 +21,12 @@ char **handle_argument(char *x);
 int arg_count(const char *comm);
 void execute(char **args, char **env, char *argv[]);
 char **get_path(char *pathptr);
-void _execute(char **args, char **env, char *comm, char *name);
+void execute(char **args, char **env, char *argv[]);
 int _strlen(char *x);
 int _strcmp(char *x, char *y);
 int _strncmp(char *x, char *y, int n);
+void _execute(char **args, char **env, char *comm, char *name);
+void _strcpy(char *x, char *y);
 
 
 
