@@ -43,7 +43,7 @@ char **get_path(char *pathptr)
 {
 	char *tok;
 	int i;
-	char **p = (char **)malloc(sizeof(char *) * 25);
+	char **p = (char **)malloc(sizeof(char *) * 30);
 	char *temp = NULL;
 
 	temp = _strdup(pathptr);

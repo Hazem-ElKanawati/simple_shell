@@ -48,7 +48,7 @@ char *_strdup(char *x)
 
 	while (x[n] != '\0')
 		n++;
-	p = (char *)malloc(sizeof(char) * (n + 4));
+	p = (char *)malloc(sizeof(char) * (n + 10));
 	if (p == NULL)
 		return (NULL);
 	for (i = 0; i < n; i++)

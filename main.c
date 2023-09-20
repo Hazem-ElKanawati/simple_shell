@@ -19,7 +19,7 @@ int main(int argc, char *argv[], char **env)
 	{
 		while (1)
 		{
-			prstr("($) ");
+			printf("($) ");
 			r = getline(&command, &l, stdin);
 			fflush(stdin);
 			if (r != -1)
