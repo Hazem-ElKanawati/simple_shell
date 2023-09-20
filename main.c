@@ -32,6 +32,7 @@ int main(int argc, char *argv[], char **env)
 			{
 				perror(argv[0]);
 			}
+			command = NULL;
 		}
 	} else
 	{
