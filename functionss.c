@@ -17,7 +17,7 @@ void rm_newline(char *x)
 {
 	int i = 0;
 
-	while (x[i] != '\n')
+	while (x[i] != '\n' && x[i] != '\0')
 		i++;
 	x[i] = '\0';
 }
@@ -95,6 +95,7 @@ void execute(char **args, char **env, char *argv[])
 	int i;
 	char *pathptr = NULL;
 	char **patharr = NULL;
+	int n = _strcmp(args[0], "env");
 	char *comm = NULL;
 	int flag = 0;
 
@@ -105,8 +106,9 @@ void execute(char **args, char **env, char *argv[])
 			_execute(args, env, args[0], argv[0]);
 			flag = 1;
 		}
-	}
-	else if (check_exit(args) == 0)
+	} else if (n == 1)
+		check_exit(args);
+	else if (n == 0)
 	{
 		for (i = 0; env[i] != NULL; i++)
 		{
@@ -119,7 +121,6 @@ void execute(char **args, char **env, char *argv[])
 			sstrcat(patharr[i], "/");
 			sstrcat(patharr[i], args[0]);
 			comm = patharr[i];
-
 			if (access(comm, X_OK) == 0)
 			{
 				_execute(args, env, comm, argv[0]);
@@ -129,7 +130,7 @@ void execute(char **args, char **env, char *argv[])
 		}
 		clean_a(patharr);
 	}
-	if (!flag)
+	if (n != 1 && !flag)
 		perror(argv[0]);
 }
 

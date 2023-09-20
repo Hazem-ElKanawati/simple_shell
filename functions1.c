@@ -72,11 +72,21 @@ char **get_path(char *pathptr)
 
 int check_exit(char **args)
 {
+	int i;
 
 	if (_strcmp(args[0], "exit") == 1)
 	{
 		clean_a(args);
 		exit(0);
+	}
+	else if (_strcmp(args[0], "env") == 1)
+	{
+		for (i = 0; environ[i] != NULL; i++)
+		{
+			prstr(environ[i]);
+			prchar('\n');
+		}
+		return (1);
 	}
 	else
 		return (0);
