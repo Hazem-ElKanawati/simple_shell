@@ -47,6 +47,7 @@ int main(int argc, char *argv[], char **env)
 		}
 
 	}
+	free(command);
 	free(args);
 	return (0);
 }
