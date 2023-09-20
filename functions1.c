@@ -74,7 +74,10 @@ int check_exit(char **args)
 {
 
 	if (_strcmp(args[0], "exit") == 1)
+	{
+		clean_a(args);
 		exit(0);
+	}
 	else
 		return (0);
 

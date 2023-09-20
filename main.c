@@ -26,6 +26,7 @@ int main(int argc, char *argv[], char **env)
 			{
 				rm_newline(command);
 				args = handle_argument(command);
+				free(command);
 				execute(args, env, argv);
 			} else
 			{
@@ -40,13 +41,11 @@ int main(int argc, char *argv[], char **env)
 		{
 			rm_newline(command);
 			args = handle_argument(command);
+			free(command);
 			execute(args, env, argv);
 		} else
-		{
 			perror(argv[0]);
-		}
 	}
-	free(command);
 	free(args);
 	return (0);
 }
