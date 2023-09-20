@@ -10,6 +10,7 @@
 void _execute(char **args, char **env, char *comm, char *name)
 {
 	pid_t p;
+	int i;
 
 	p = fork();
 
@@ -26,6 +27,10 @@ void _execute(char **args, char **env, char *comm, char *name)
 	else
 	{
 		wait(NULL);
+		for (i = 0; args[i] != NULL; i++)
+		{
+			free(args[i]);
+		}
 	}
 }
 
@@ -38,7 +43,6 @@ char **get_path(char *pathptr)
 {
 	char *tok;
 	int i;
-	int n;
 	char **p = (char **)malloc(sizeof(char *) * 25);
 	char *temp = NULL;
 
@@ -51,15 +55,10 @@ char **get_path(char *pathptr)
 
 	for (i = 0; tok != NULL; i++)
 	{
-		n = _strlen(tok);
-		p[i] = malloc(sizeof(char) * (n + 2));
-
-		if (p[i] == NULL)
-			return (NULL);
-
 		p[i] = _strdup(tok);
 		tok = strtok(NULL, ":");
 	}
+	p[i] = NULL;
 
 	free(temp);
 
@@ -79,4 +78,18 @@ int check_exit(char **args)
 	else
 		return (0);
 
+}
+/**
+ * clean_a - cleans the allocated array
+ * @p: path to clean
+ */
+void clean_a(char **p)
+{
+	int i;
+
+	for (i = 0; p[i] != NULL; i++)
+	{
+		free(p[i]);
+	}
+	free(p);
 }

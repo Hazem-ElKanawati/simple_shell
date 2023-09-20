@@ -81,6 +81,7 @@ char **handle_argument(char *x)
 		i++;
 	}
 	p[i] = NULL;
+	free(s);
 	return (p);
 }
 /**
@@ -126,6 +127,7 @@ void execute(char **args, char **env, char *argv[])
 				break;
 			}
 		}
+		clean_a(patharr);
 	}
 	if (!flag)
 		perror(argv[0]);
