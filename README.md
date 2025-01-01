@@ -41,8 +41,4 @@ You can then enter commands as you would in a standard Unix shell.
 ## Authors
 - **Hazem El-Kanawati** - [Hazem-ElKanawati](https://github.com/Hazem-ElKanawati)
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-For more details, visit the [simple_shell repository](https://github.com/Hazem-ElKanawati/simple_shell).
 
